@@ -6,18 +6,16 @@ const userSchema = new Schema({
     type: String,
     required: [true, "Provide a username"],
     unique: true,
-    default: null,
   },
   display_name: {
     type: String,
-    required: [true, "Provide a dsiplay name please"],
+    required: [true, "Provide a display name please"],
     default: null,
   },
   email: {
     type: String,
     trim: true,
     lowercase: true,
-    unique: true,
     validate: {
       validator: function (v) {
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);

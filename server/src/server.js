@@ -5,6 +5,7 @@ const app = express();
 
 const getLandingPage = require("./utils/getLandingPage");
 const { createComment } = require("./utils/comment.utils");
+const { registerUser, validateUser } = require("./utils/userLogin.utils");
 const { createUser, updateUser, addPostToUser } = require("./utils/user.utils");
 const { createPost, getPostPageDetails } = require("./utils/post.utils");
 const { searchBarResults } = require("./utils/search.utils");
@@ -21,6 +22,10 @@ app.route("/").get((req, res) => res.send("Hello from the server uWu"));
 app.route("/landingPage").get(getLandingPage);
 
 app.route("/user").post(createUser).put(updateUser).patch(addPostToUser);
+
+app.route("/register").post(registerUser);
+
+app.route("/login").post(validateUser);
 
 app.route("/posts").post(createPost);
 
