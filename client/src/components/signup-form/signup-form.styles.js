@@ -34,6 +34,6 @@ align-items: center;
 height: fit-content;
 padding: 10px 15px;
 width: fit-content;
-margin-top:1.5rem;
+margin:1.5rem 0 ;
 border-radius: 5px;
 `;

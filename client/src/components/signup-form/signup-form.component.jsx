@@ -1,11 +1,14 @@
 import React, {useState} from "react";
+import {setCurrentUser} from "../../redux/user/user.action";
+import {connect} from "react-redux";
+
 import {Outer, BtnHolder, Span, Bottom, ErrorContainer} from "./signup-form.styles";
 import FormInput from "../form-input/form-input.component";
 import { AwesomeButton } from "react-awesome-button";
 import axios from "axios";
 import { withRouter } from "react-router";
 
-const SignUp = ({history}) => {
+const SignUp = ({history, signInUser}) => {
     const [value, updateValue] = useState({
         signUp: true
     })
@@ -26,7 +29,11 @@ const SignUp = ({history}) => {
                 ...data,
                 isError: true
             })
-            history.push("/");
+            else {
+                signInUser(data);
+                console.log("this is the data", data);
+                history.push("/");
+            }
         });
     }
 
@@ -59,4 +66,7 @@ const SignUp = ({history}) => {
         </Outer>
     )
 }
-export default withRouter(SignUp);
+const mapDispatchToProps = dispatch => ({
+    signInUser: user => dispatch(setCurrentUser(user))
+})
+export default  withRouter(connect(null, mapDispatchToProps)(SignUp));

@@ -4,7 +4,7 @@ handleError = (err, user, res) => {
   if (err)
     return res.send({
       error: err,
-      status: "error",
+      status: 400,
     });
   res.send(user);
 };
@@ -17,15 +17,17 @@ function createUser(req, res) {
 
 function updateUser(req, res) {
   const { query } = req;
+  console.log(query);
   User.findOneAndUpdate(
     {
-      _id: query.user_id,
+      _id: query._id,
     },
     {
       $set: query,
     },
     {
       new: true,
+      useFindAndModify: false
     },
     (err, user) => {
       handleError(err, user, res);
@@ -38,8 +40,8 @@ function addPostToUser(req, res) {
     query: { user_id, post_id, add_as },
   } = req;
 
-  if (add_as === "author") pushParameter = { author_of_posts: post_id };
-  else pushParameter = { liked_posts: post_id };
+  if (add_as === "author") var pushParameter = {author_of_posts: post_id};
+  else var pushParameter = { liked_posts: post_id };
   console.log(user_id, post_id);
   User.findOneAndUpdate(
     {

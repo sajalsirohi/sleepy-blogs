@@ -42,3 +42,14 @@ export const Label = styled.div`
   margin-bottom: 1rem;
   margin-left: 5px;
 `;
+
+export const DisplayNameHolder = styled.div`
+margin-bottom: 1.4rem;
+font-size: 0.9rem;
+`;
+
+export const DisplayName = styled.span`
+color: #af344e;
+text-decoration: underline;
+weight: 600;
+`;

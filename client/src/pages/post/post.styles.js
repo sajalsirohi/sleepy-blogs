@@ -86,3 +86,12 @@ export const BtnContainer = styled.div`
   justify-content: space-between;
   width: 320px;
 `;
+
+export const LikesContainer = styled.div`
+color: #bb3853;
+ font-weight: 600;
+ position: relative;
+ right: 45px;
+ margin-right: -30px;
+ font-size: 1.3rem;
+ `;
