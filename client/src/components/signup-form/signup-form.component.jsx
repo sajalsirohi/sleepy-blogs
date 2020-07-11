@@ -31,7 +31,6 @@ const SignUp = ({history, signInUser}) => {
             })
             else {
                 signInUser(data);
-                console.log("this is the data", data);
                 history.push("/");
             }
         });

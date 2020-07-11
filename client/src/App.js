@@ -6,6 +6,7 @@ import Footer from "./components/footer/footer.component";
 import PostPage from "./pages/post/post.component";
 import SignUpPage from "./pages/signup/signup.page.component";
 import UserPage from "./pages/user/user.page.component";
+import CreatePostPage from "./pages/create-post/create-post.component";
 function App() {
   return (
     <div>
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/signup" component={SignUpPage} />
         <Route path="/posts/:postId" component={PostPage} />
         <Route exact path="/user" component={UserPage}/>
+        <Route exact path="/user/:userId/createPost" component={CreatePostPage}/>
       </Switch>
       <Footer />
     </div>

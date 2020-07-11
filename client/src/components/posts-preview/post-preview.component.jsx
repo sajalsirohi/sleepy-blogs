@@ -12,12 +12,13 @@ import {
 } from "./post-preview.styles";
 
 const PostPreview = ({ post, username, display_name, profile_image_url }) => {
-  const { _id, title, likes, shares, views, created_at, content } = post;
-  var history = useHistory();
+  let { _id, title, likes, shares, views, created_at, content } = post;
+  let history = useHistory();
   function handleClick(post) {
     console.log(_id);
     history.push(`/posts/${_id}`);
   }
+  created_at = new Date(created_at);
 
   return (
     <div>
@@ -33,7 +34,7 @@ const PostPreview = ({ post, username, display_name, profile_image_url }) => {
           </ImgAndNameHolder>
 
           <div>
-            {created_at.substring(0,10)}
+            {created_at.getDate()}/{created_at.getMonth()}/{created_at.getFullYear()}
           </div>
         </UserInfo>
         <TitleContainer>{title.substring(0,30)}...</TitleContainer>

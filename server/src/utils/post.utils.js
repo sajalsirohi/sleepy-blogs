@@ -9,7 +9,7 @@ function createPost(req, res) {
         if (err)
             return res.send({
                 error: err,
-                status: "error",
+                status: 400,
             });
         res.send(post);
     });
@@ -56,8 +56,6 @@ async function handleLike(req, res) {
             {new: true, useFindAndModify: false}
         ).then(post => res.send(post));
     });
-
-
 }
 
 module.exports = {

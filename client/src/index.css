@@ -13,13 +13,12 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #9e2f46;
   border-radius: 10px;
   margin: 1px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #e8bec7;
-  border-radius: 10px;
+  background: #802639;
+  border-radius: 5px;
 }
 

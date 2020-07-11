@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Outer = styled.div`
   width: 70%;
-
   padding: 20px;
   margin: 0 auto;
   margin-bottom: 4rem;
