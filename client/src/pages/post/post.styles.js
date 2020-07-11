@@ -83,7 +83,7 @@ export const BtnContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  width: 320px;
+  width: 400px;
 `;
 
 export const LikesContainer = styled.div`
@@ -94,3 +94,6 @@ color: #bb3853;
  margin-right: -30px;
  font-size: 1.3rem;
  `;
+
+export const ViewsContainer = styled.div`
+margin: 0.5rem 0`;

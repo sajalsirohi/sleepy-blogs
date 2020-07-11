@@ -7,7 +7,7 @@ const getLandingPage = require("./utils/getLandingPage");
 const { createComment } = require("./utils/comment.utils");
 const { registerUser, validateUser } = require("./utils/userLogin.utils");
 const { createUser, updateUser, addPostToUser } = require("./utils/user.utils");
-const { createPost, getPostPageDetails, likePost } = require("./utils/post.utils");
+const { createPost, getPostPageDetails, likePost, getAllPosts } = require("./utils/post.utils");
 const { searchBarResults } = require("./utils/search.utils");
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +27,7 @@ app.route("/register").post(registerUser);
 
 app.route("/login").post(validateUser);
 
-app.route("/posts").post(createPost);
+app.route("/posts").post(createPost).get(getAllPosts);
 
 app.route("/posts/:postId").get(getPostPageDetails);
 

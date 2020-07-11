@@ -22,3 +22,23 @@ body {
   border-radius: 5px;
 }
 
+.dropdown-menu.show{
+  width: fit-content;
+}
+
+.btn-info{
+  background: #802639;
+  outline: none;
+  border: 1px solid #540b21;
+}
+
+.btn-info:hover {
+  background: #540b21;
+  border: 1px solid #540b21;
+}
+
+.btn-info:focus{
+  outline: none;
+  border: 1px solid #540b21;
+}
+

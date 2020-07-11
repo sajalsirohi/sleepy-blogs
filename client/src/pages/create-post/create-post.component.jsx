@@ -5,8 +5,10 @@ import {selectCurrentUser, isUserLoggedIn} from "../../redux/user/user.selectors
 import {connect} from "react-redux";
 import {createStructuredSelector} from "reselect";
 import TextField from "../../components/textfield-input/textfield-input.component";
+import axios from "axios";
+import {withRouter} from "react-router";
 
-const CreatePostPage = ({currentUser, isSessionActive}) => {
+const CreatePostPage = ({currentUser, isSessionActive, history}) => {
     const [data, updateData] = useState({
         title: "",
         content: "",
@@ -28,15 +30,20 @@ const CreatePostPage = ({currentUser, isSessionActive}) => {
     }, [data.categories])
 
     useEffect(() => {
-        if (data.tags) updateCats(data.tags.split(", "))
+        if (data.tags) updateTags(data.tags.split(", "))
     }, [data.tags])
 
-    function handleSubmit(){
-        console.log({
-            ...data,
-            categories: categories,
-            tags: tags,
-        })
+    function handleSubmit() {
+        axios({
+            method: "post",
+            url: "/posts",
+            params: {
+                ...data,
+                tags: tags,
+                categories: categories,
+                author_user_id: currentUser._id
+            }
+        }).then(({data}) => history.push(`/posts/${data._id}`));
     }
 
     return (
@@ -73,4 +80,4 @@ const mapStateToProps = createStructuredSelector({
     isSessionActive: isUserLoggedIn
 })
 
-export default connect(mapStateToProps)(CreatePostPage);
+export default withRouter(connect(mapStateToProps)(CreatePostPage));

@@ -58,8 +58,25 @@ async function handleLike(req, res) {
     });
 }
 
+async function getAllPosts(req, res) {
+    console.log("accesed this part");
+    Post.find()
+        .then((posts) => {
+            let newData = posts.map((post) =>
+                User.find({_id: post.author_user_id})
+                    .select("display_name username profile_image_url -_id")
+                    .then((user) => {
+                        const {_doc} = {...user[0]};
+                        return ({post, ..._doc});
+                    })
+            );
+            Promise.all(newData).then(values => res.send(values));
+        });
+}
+
 module.exports = {
     createPost: createPost,
     getPostPageDetails: getPostPageDetails,
     likePost: handleLike,
+    getAllPosts: getAllPosts,
 };

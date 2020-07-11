@@ -8,7 +8,7 @@ export const OuterContainer = styled.div`
   padding: 35px;
   justify-content: center;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1180px) {
     grid-gap: 30px;
     padding: 15px;
     grid-template-columns: 1fr 1fr ;

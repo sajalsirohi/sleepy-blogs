@@ -15,7 +15,8 @@ import {
     Tag,
     NoComments,
     BtnContainer,
-    LikesContainer
+    LikesContainer,
+    ViewsContainer
 } from "./post.styles";
 import Loader from "react-loader-spinner";
 import AuthorDetails from "../../components/author-details/author-details.component";
@@ -74,7 +75,9 @@ const PostPage = ({match: {url}}) => {
                         <LikesContainer>
                             {post.likes}
                         </LikesContainer>
-
+                        <ViewsContainer>
+                            Views: {post.views}
+                        </ViewsContainer>
                         <ShareBtn/>
                         <AwesomeButton
                             ripple

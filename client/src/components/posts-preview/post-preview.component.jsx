@@ -26,7 +26,6 @@ const PostPreview = ({ post, username, display_name, profile_image_url }) => {
         <UserInfo>
           <ImgAndNameHolder>
             <img src={profile_image_url} alt="user img" />
-
             <NameHolder>
               <div>{display_name}</div>
               <div>{username}</div>
@@ -34,7 +33,7 @@ const PostPreview = ({ post, username, display_name, profile_image_url }) => {
           </ImgAndNameHolder>
 
           <div>
-            {created_at.getDate()}/{created_at.getMonth()}/{created_at.getFullYear()}
+            {created_at.getDate()}/{created_at.getMonth()+1}/{created_at.getFullYear()}
           </div>
         </UserInfo>
         <TitleContainer>{title.substring(0,30)}...</TitleContainer>

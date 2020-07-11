@@ -21,3 +21,9 @@ export const Title = styled.div`
   margin-top: 2rem;
   margin-bottom: 1rem;
 `;
+
+export const CreatePostBtn = styled.div`
+position: fixed;
+bottom: 60px;
+right: 10px;
+`;
