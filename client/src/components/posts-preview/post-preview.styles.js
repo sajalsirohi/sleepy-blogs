@@ -7,6 +7,7 @@ export const Outer = styled.div`
   box-shadow: 3px 3px 7px #111111, -3px -3px 7px #252525;
   padding: 20px;
   transition: transform 0.2s;
+  
 
   &:hover {
     box-shadow: 0 0px 40px #631d2c;

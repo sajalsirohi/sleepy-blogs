@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import PostPreviewLayout from "../../components/posts-preview-layout/post-preview-layout.component";
 import axios from "axios";
 import Loader from "react-loader-spinner";
@@ -13,11 +13,15 @@ const AllPostPage = () => {
     const [showLoader, updateLoading] = useState(true);
     const [values, updateValues] = useState({
         Sortby: "date (latest)",
-        Filterby: "categories"
+        Filterby: "categories",
+        FilterByValue: ""
     });
+    let initialPosts = useRef();
+    const [isFiltered, updateFiltered] = useState(false);
 
     useEffect(() => {
         axios.get("/posts").then(({data}) => {
+            initialPosts.current = data;
             updatePosts(data);
         });
     }, []);
@@ -38,9 +42,41 @@ const AllPostPage = () => {
     }
 
     function handleSubmit(){
-        let tempPosts = _.sortBy(allPosts, "display_name");
-        console.log("These posts", tempPosts);
-        updatePosts(tempPosts);
+        let field;
+        let orderBy = "desc";
+        switch(values.Sortby) {
+            case "date (latest)":
+                field = "created_at";
+                break;
+
+            case "date (oldest)":
+                field = "created_at";
+                orderBy = "asc";
+                break;
+
+            case "most views":
+                field = "views";
+                break;
+
+            case "most likes":
+                field = "likes";
+                break;
+        }
+        let tempPosts = _.orderBy(allPosts, [`post.${field}`], [orderBy]);
+        if (values.FilterByValue !== "") {
+            let filteredTempPosts = tempPosts.filter(post =>
+                post.post[values.Filterby].includes(values.FilterByValue)
+            );
+            updateFiltered(true);
+            updatePosts(filteredTempPosts);
+        }
+        else {
+            if (tempPosts && !isFiltered) updatePosts(tempPosts)
+            else {
+                updatePosts(initialPosts.current);
+                updateFiltered(false);
+            }
+        }
     }
 
     useEffect(() => {
@@ -51,7 +87,7 @@ const AllPostPage = () => {
         <Outer>
             <FilterHolder>
                 <Dropdown values={values} handleClick={handleClick} name="Sort by"
-                          Options={["Date (Oldest)", "Date (Latest)", "Most Views", "Most Likes"]}/>
+                          Options={["Date (Latest)", "Date (Oldest)", "Most Views", "Most Likes"]}/>
                 <Dropdown values={values} handleClick={handleClick} name="Filter by"
                           Options={["Categories", "Tags", "Title"]}/>
                 <SearchCont>

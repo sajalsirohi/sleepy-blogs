@@ -39,9 +39,9 @@ const PostPreview = ({ post, username, display_name, profile_image_url }) => {
         <TitleContainer>{title.substring(0,30)}...</TitleContainer>
         <TextSection>{content.substring(0, 150)} ...</TextSection>
         <Interaction>
-          <div>Liked by: {likes}</div>
+          <div>Likes: {likes}</div>
           <div>Views: {views}</div>
-          <div>Shared: {shares}</div>
+          <div>Shares: {shares}</div>
         </Interaction>
       </Outer>
     </div>
